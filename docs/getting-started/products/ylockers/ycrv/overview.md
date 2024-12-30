@@ -1,74 +1,43 @@
-# Overview
 
-![](https://i.imgur.com/ni42qE6.png)
+# yCRV Overview
 
-## What is yCRV
+![image](/img/product-pages/ycrv-banner.png)
 
-yCRV is Yearn's new and improved veCRV wrapper system designed to tokenize the different benefits of Yearn's veCRV position. This system is composed of a [`base-token`](#base-token) called yCRV as well as 3 derivative tokens called [`activated tokens`](#activated-tokens).
+## What is yCRV?
 
-### Base-token
+yCRV is Yearn's veCRV yLocker product. It is designed to tokenize the different benefits of a [veCRV position](https://resources.curve.fi/crv-token/vecrv/) in a simple, user-friendly way. Let's review the basics of liquid locker tokens like yCRV:
 
-yCRV is the base-token, which carries no native rewards, but lets users easily enter into the other 'activated' tokens that do.
+- 1 yCRV represents 1 veCRV max-locked to Yearn
+- They are not redeemable for the underlying locked CRV
+- They have no transfer restrictions and thus can always be swapped in DEX pools
 
-New yCRV can be minted in two ways:
+yCRV allows Yearn to use your CRV tokens optimally within the Curve ecosystem to boost yields across all products and earn rewards from admin fees and voter incentives. Depositing to yCRV also allows Yearn to use the locked CRV to actively participate in Curve governance.
 
-- Lock CRV to Yearn's veCRV position (permanent 1-way lock).
+For more information about Yearn's Liquid Lockers, read the overview [here](../overview.md).
 
-_or_
+## Get yCRV
 
-- Migrate from legacy tokens [yveCRV and yvBOOST](#how-yvecrv-and-veboost-functionality-was-migrated-to-ycrv).
+yCRV is a wrapped version of CRV. But unlike other wrapped tokens like WETH, it cannot be unwrapped as it is forever max-locked into the veCRV system. But, unlike veCRV, it can be swapped on DEXes.
 
-Both operations mint yCRV to the user at a 1:1 rate. Users migrating from yvBOOST can use the zap at https://yearn.fi/ycrv to efficiently unwrap their tokens to yveCRV and migrate to yCRV in a single step. Of course, users can also choose to purchase yCRV from the new Curve factory pool: https://curve.fi/#/ethereum/pools/factory-v2-280/deposit
+If you have CRV tokens, you can convert them to yCRV either by minting yCRV at a 1:1 rate at https://ycrv.yearn.fi/app/get. You can also buy yCRV with CRV (or another token) using [CowSwap](https://swap.cow.fi/#/1/swap/CRV/YCRV), which may get you a better rate.
 
-### 'Activated'-tokens
+## Earn Yield on yCRV
 
-Yearn passes all benefits of its veCRV position on to yCRV users who hold one of its **activated-tokens:**
+Yearn has 2 ways to earn yield on your yCRV; depositing to the `YearnBoostedStaker` contract to earn crvUSD or depositing to the yCRV Auto-Compounder vault (yvyCRV) to earn more yCRV. The Differences and details are documented [here](/getting-started/products/ylockers/overview). Once you know which path you want to take, you can follow the step by step guide [here](/getting-started/products/ylockers/ycrv/ycrv-guide).
 
-- [**st-yCRV (Staking Rewards):**](#staked-ycrv) [yVault](https://medium.com/iearn/yearn-finance-explained-what-are-vaults-and-strategies-96970560432) that receives admin fees and bribes from locked CRV.
-- [**lp-yCRV (Liquidity Pool Rewards):**](#lpd-ycrvcrv) yVault for CRV LP tokens, autocompounds emissions and fees.
+:::info
 
-> Note: a third activated token, vl-yCRV, was planned but not rolled out due to a lack of demand.
+The names yvyCRV and st-yCRV refer to the same thing: The [Auto-compounding yCRV vault](https://etherscan.io/address/0x27B5739e22ad9033bcBf192059122d163b60349D#code). Websites and services may still use the old name (st-yCRV). We are working with ecosystem projects to change the name to yvyCRV universally, but until then, if you have concerns about your assets, be sure to check the contract address.
 
-![image](https://github.com/yearn/yearn-devdocs/assets/7863230/b0988ee4-4160-4680-9cee-fe6a6ef5b138)
+:::
 
-## Staked yCRV
+___
 
-![](https://i.imgur.com/IgpIhKN.png)
+## Links
 
-Staked yCRV is designed to be a 'set and forget' yield-optimized position for yCRV users. The source of yield comes from two primary places:
-
-- **Admin Fees:** Every week, veCRV holders earn weekly "admin fees" from Curve protocol. Staked yCRV is where 100% of admin fees earned by Yearn's veCRV position are sent and auto-compounded into more yCRV.
-- **Bribes:** For all the yCRV within st-yCRV, 1 veCRV worth of vote power will be used to vote in favor of the Curve gauge which optimizes bribe revenue for st-yCRV users. Bribes (or misc. revenue) collected from these votes will be allocated as supplemental yield to st-yCRV users.
-
-Under the hood, st-yCRV is a Yearn v2 vault, allowing users to sit back, relax and have their underlying token compounded by a strategy that sells 3CRV and some claimed bribes into yCRV.
-
-## LP'd yCRV/CRV
-
-![](https://i.imgur.com/3JNhzWR.png)
-
-Liquidity Pool'd yCRV provides liquidity to the new CRV pool on Curve, and lp-yCRV holders receive this LP fees and emissions. When you zap to this token, under the hood, you are entering an LP position in the yCRV/CRV pool and depositing the LP tokens into the lp-yCRV yVault.
-
-This is also a Yearn v2 vault with a strategy that deposits all CRV emissions generated back into the pool to grow the position. Like st-yCRV this is designed to be a set and forget token that auto harvests and auto compound rewards.
-
-Yearn will mark 1 veCRV worth of voting power for every 1 yCRV in this position to vote in favor of yCRV Curve gauge - increasing CRV emissions to users.
-
-## How yveCRV and yvBOOST functionality was migrated to yCRV
-
-yveCRV and yvBOOST are being deprecated, and there is a migration path available to users. The functionality of both was integrated into [st-yCRV](#staked-ycrv) so if you are looking for the same benefits check the [guide](https://docs.yearn.fi/getting-started/products/ylockers/ycrv/guide) on how to migrate from the legacy tokens using yearn's UI
-
-![](https://i.imgur.com/Htl3AgP.png)
-
-## Addresses
-
-- **yCRV:** [0xFCc5c47bE19d06BF83eB04298b026F81069ff65b](https://etherscan.io/token/0xFCc5c47bE19d06BF83eB04298b026F81069ff65b)
-- **st-yCRV (vault):** [0x27B5739e22ad9033bcBf192059122d163b60349D](https://etherscan.io/token/0x27B5739e22ad9033bcBf192059122d163b60349D)
-- **lp-yCRV (DEPRECATED, The v2 pool is more efficient and has a price oracle):** [0xc97232527B62eFb0D8ed38CF3EA103A6CcA4037e](https://etherscan.io/token/0xc97232527B62eFb0D8ed38CF3EA103A6CcA4037e)
-- **lp-yCRV v2 (vault):** [0x6E9455D109202b426169F0d8f01A3332DAE160f3](https://etherscan.io/token/0x6E9455D109202b426169F0d8f01A3332DAE160f3)
-- **CRV/yCRV Curve Pool:** [0x453D92C7d4263201C69aACfaf589Ed14202d83a4](https://etherscan.io/token/0x453D92C7d4263201C69aACfaf589Ed14202d83a4)
-- **ZapYCRV.vy :** [0x01D7f32B6E463c96c00575fA97B8224326C6A6B9](https://etherscan.io/token/0x01D7f32B6E463c96c00575fA97B8224326C6A6B9)
-- **yCRV Interface:** https://yearn.fi/ycrv
-
-## Read More
-
-- [yCRV Interface Guide](https://docs.yearn.fi/getting-started/products/ylockers/ycrv/guide)
-- [yCRV FAQ](https://docs.yearn.fi/getting-started/products/ylockers/ycrv/faq)
+<PrettyLink>[Contract Addresses](/developers/addresses/ycrv-contracts)</PrettyLink>
+<PrettyLink>[yCRV UI](https://ycrv.yearn.fi)</PrettyLink>
+<PrettyLink>[UI Source Code](https://github.com/yearn/ylockers-ui-ycrv)</PrettyLink>
+<PrettyLink>[Yearn Boosted Staker Source Code](https://github.com/yearn/yearn-boosted-staker)</PrettyLink>
+<PrettyLink>[crvhub.com - Liquid Lockers Tracker](https://crvhub.com/wrappers)</PrettyLink>
+<PrettyLink>[yLockers Discord Channel](https://discord.com/channels/734804446353031319/1186417376275730552)</PrettyLink>

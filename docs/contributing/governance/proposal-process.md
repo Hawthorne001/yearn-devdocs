@@ -1,7 +1,5 @@
 # Proposal Process
 
----
-
 [veYFI](https://docs.yearn.fi/contributing/governance/veyfi) token holders control the Yearn ecosystem through off-chain proposals and votes via [Snapshot](https://snapshot.org/#/ybaby.eth). Proposals that generate majority support (>50% of the vote) are implemented by a 9-member multi-signature wallet, and 6 out of 9 wallet signers must sign for a change to be implemented. The [members of the multi-signature wallet](https://docs.yearn.fi/resources/faq#who-is-on-the-multisig) were voted in by YFI holders and are subject to change from future governance votes.
 
 ## Discussion
@@ -60,3 +58,7 @@ The default template for proposals can be found on [Github](https://github.com/y
 ## Implementation
 
 Once a Snapshot votes have passed, changes will be implemented by Yearn's protocol or operations team and signed by the multi-sig, if necessary.
+
+## Guardian Role
+
+Per [YIP-81](https://snapshot.box/#/s:veyfi.eth/proposal/0x6f3082db2cef3e0c254e569580d063cb14130a92d0bf1729bef342a386e419f2), the [Yearn Multisig](/developers/security/multisig) (AKA yChad) serves in the Guardian role to steward and protect the Yearn Protocol and its participants. The Guardian role is defined as being able to **"nullify a proposal or governance decision but cannot make proposals"**.

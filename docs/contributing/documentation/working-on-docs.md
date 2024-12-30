@@ -1,12 +1,10 @@
 # How to contribute to docs
 
----
-
 **IF YOU HAVE ANY QUESTIONS** post in the #documentation channel on [discord](https://discord.gg/freT6YRNSX)
 
 Yearn's documentation repository is hosted on GitHub in order to foster and encourage open source collaboration.
 
-_Note for translators: Non-english docs are store in separate branches. When merging your changes, direct your pull request to the corresponding branch_
+_Note for translators: Non-english docs are stored in separate branches. When merging your changes, direct your pull request to the corresponding branch_
 
 ## Working with HackMD
 

@@ -1,19 +1,44 @@
 // @ts-check
-/** @type {import('@docusaurus/types').DocusaurusConfig} */
-const math = require('remark-math')
-const katex = require('rehype-katex')
+/** @type {import('@docusaurus/types').Config} */
+import math from 'remark-math'
+import katex from 'rehype-katex'
+import { themes as prismThemes } from 'prism-react-renderer'
+import 'dotenv/config'
 
-module.exports = {
-  title: 'yearn.fi',
+const branchName = process.env.BRANCH_NAME || 'unknown'
+const isDev = process.env.IS_DEV === 'true'
+const alchemyKey = process.env.ALCHEMY_API_KEY || 'unknown'
+
+export default {
+  title: 'Yearn Docs',
   tagline: 'DeFi made simple',
   url: 'https://docs.yearn.fi',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'yearn', // Usually your GitHub org/user name.
   projectName: 'yearn-devdocs', // Usually your repo name.
+  markdown: {
+    mermaid: true,
+  },
+  customFields: {
+    branchName,
+    isDev,
+    alchemyKey,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
   themeConfig: {
+    docs: {
+      sidebar: {
+        autoCollapseCategories: true,
+      },
+    },
+    prism: {
+      additionalLanguages: ['solidity'],
+      theme: prismThemes.github,
+      darkTheme: prismThemes.dracula,
+    },
     algolia: {
       apiKey: process.env.ALGOLIA_API_KEY || 'UNKNOWN',
       indexName: process.env.ALGOLIA_INDEX_NAME || 'UNKNOWN',
@@ -33,12 +58,11 @@ module.exports = {
       },
       {
         name: 'git-url',
-        content: 'https://github.com/yearn/yearn-devdocs'
-      }
+        content: 'https://github.com/yearn/yearn-devdocs',
+      },
     ],
     navbar: {
-      hideOnScroll: true,
-      title: 'Yearn Finance',
+      hideOnScroll: false,
       logo: {
         alt: 'YFI Logo',
         src: 'img/logo.svg',
@@ -46,121 +70,28 @@ module.exports = {
       items: [
         {
           to: 'getting-started/intro',
-          label: 'Introduction',
+          label: 'User Docs',
+          activeBasePath: '/getting-started',
         },
         {
-          to: 'developers/v3/overview',
-          label: 'Develop',
+          to: 'developers/building-on-yearn',
+          label: 'Dev Docs',
+          activeBasePath: '/developers',
         },
         {
-          to: '/vaults/smart-contracts/BaseStrategy',
-          label: 'Smart Contracts',
+          to: 'contributing/introduction',
+          label: 'DAO Docs',
+          activeBasePath: '/contributing',
         },
         {
-          to: 'contributing/contribute',
-          label: 'Contribute',
-        },
-        {
-          to: 'resources/faq',
-          label: 'Resources',
-        },
-        {
-          to: 'security/',
-          label: 'Security',
-        },
-        {
-          type: 'docsVersionDropdown',
-          dropdownItemsBefore: [],
+          label: 'Blog',
           position: 'right',
-          // Do not add the link active class when browsing docs.
-          dropdownActiveClassDisabled: true,
-          docsPluginId: 'default',
+          href: 'https://blog.yearn.fi',
         },
         {
-          type: 'search',
+          type: 'dropdown',
+          label: 'Community',
           position: 'right',
-        },
-      ],
-    },
-    footer: {
-      style: 'light',
-      links: [
-        {
-          title: 'GitHub',
-          items: [
-            {
-              label: 'V3 Vaults',
-              href: 'https://github.com/yearn/yearn-vaults-v3',
-            },
-            {
-              label: 'V3 Tokenized Strategy',
-              href: 'https://github.com/yearn/tokenized-strategy',
-            },
-            {
-              label: 'V3 Strategy Mix: Foundry',
-              href: 'https://github.com/yearn/tokenized-strategy-foundry-mix',
-            },
-            {
-              label: 'V3 Strategy Mix: Ape',
-              href: 'https://github.com/yearn/tokenized-strategy-ape-mix',
-            },
-            {
-              label: 'V2 Vaults',
-              href: 'https://github.com/yearn/yearn-vaults',
-            },
-            {
-              label: 'V2 Strategy Mix',
-              href: 'https://github.com/yearn/brownie-strategy-mix',
-            },
-            {
-              label: 'yearn-security',
-              href: 'https://github.com/yearn/yearn-security',
-            },
-            {
-              label: 'yearn-devdocs',
-              href: 'https://github.com/yearn/yearn-devdocs',
-            },
-          ],
-        },
-        {
-          title: 'Ecosystem',
-          items: [
-            {
-              label: 'V3 Vaults',
-              href: 'https://yearn.fi/v3',
-            },
-            {
-              label: 'V2 Vaults',
-              href: 'https://yearn.fi/vaults',
-            },
-            {
-              label: 'Juiced Vaults',
-              href: 'https://juiced.yearn.fi/',
-            },
-            {
-              label: 'veYFI',
-              href: 'https://veyfi.yearn.fi/',
-            },
-            {
-              label: 'yETH',
-              href: 'https://yeth.yearn.fi/',
-            },
-            {
-              label: 'yCRV',
-              href: 'https://ycrv.yearn.fi/',
-            },
-            {
-              label: 'yPrisma',
-              href: 'https://yprisma.yearn.fi/',
-            },
-            {
-              label: 'yBribe',
-              href: 'https://ybribe.yearn.fi/',
-            },
-          ],
-        },
-        {
-          title: 'Community',
           items: [
             {
               label: 'Discord',
@@ -179,7 +110,7 @@ module.exports = {
               href: 'https://medium.com/iearn',
             },
             {
-              label: 'Forum',
+              label: 'Governance Forum',
               href: 'https://gov.yearn.fi',
             },
             {
@@ -187,6 +118,22 @@ module.exports = {
               href: 'https://snapshot.org/#/veyfi.eth',
             },
           ],
+        },
+        {
+          href: 'https://github.com/yearn',
+          position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
+        },
+        {
+          href: 'https://yearn.fi',
+          position: 'right',
+          className: 'header-yearn-link',
+          'aria-label': 'yearn.fi',
+        },
+        {
+          type: 'search',
+          position: 'right',
         },
       ],
     },
@@ -196,18 +143,22 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          path: 'vaults',
+          path: 'docs/getting-started',
           remarkPlugins: [math],
           rehypePlugins: [katex],
-          routeBasePath: 'vaults',
-          sidebarPath: require.resolve('./sidebars/sidebars.js'),
+          routeBasePath: 'getting-started',
+          sidebarPath: './sidebars/sidebarsUserDocs.js',
           editUrl:
             'https://github.com/yearn/yearn-devdocs/edit/master/website/',
-          includeCurrentVersion: false,
+          sidebarCollapsed: true,
           breadcrumbs: false,
+          admonitions: {
+            keywords: ['yearn', 'yearnData'],
+            extendDefaults: true,
+          },
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: './src/css/custom.css',
         },
       },
     ],
@@ -227,36 +178,16 @@ module.exports = {
         id: 'developers',
         path: 'docs/developers',
         routeBasePath: 'developers',
-        sidebarPath: require.resolve('./sidebars/sidebarsDevelopers.js'),
+        sidebarPath: './sidebars/sidebarsDeveloperDocs.js',
         showLastUpdateTime: true,
-        sidebarCollapsed: false,
-        breadcrumbs: false,
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'getting-started',
-        path: 'docs/getting-started',
-        routeBasePath: 'getting-started',
-        sidebarPath: require.resolve('./sidebars/sidebarsGettingStarted.js'),
-        showLastUpdateTime: true,
-        sidebarCollapsed: false,
+        sidebarCollapsed: true,
         breadcrumbs: false,
         remarkPlugins: [math],
         rehypePlugins: [katex],
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'partners',
-        path: 'docs/partners',
-        routeBasePath: 'partners',
-        sidebarPath: require.resolve('./sidebars/sidebarsPartners.js'),
-        showLastUpdateTime: true,
-        sidebarCollapsed: false,
-        breadcrumbs: false,
+        admonitions: {
+          keywords: ['yearn', 'yearnData'],
+          extendDefaults: true,
+        },
       },
     ],
     [
@@ -265,12 +196,16 @@ module.exports = {
         id: 'contributing',
         path: 'docs/contributing',
         routeBasePath: 'contributing',
-        sidebarPath: require.resolve('./sidebars/sidebarsContributing.js'),
+        sidebarPath: './sidebars/sidebarsContributing.js',
         showLastUpdateTime: true,
-        sidebarCollapsed: false,
+        sidebarCollapsed: true,
         breadcrumbs: false,
         remarkPlugins: [math],
         rehypePlugins: [katex],
+        admonitions: {
+          keywords: ['yearn', 'yearnData'],
+          extendDefaults: true,
+        },
       },
     ],
     [
@@ -279,21 +214,34 @@ module.exports = {
         id: 'resources',
         path: 'docs/resources',
         routeBasePath: 'resources',
-        sidebarPath: require.resolve('./sidebars/sidebarsResources.js'),
+        sidebarPath: './sidebars/sidebarsResources.js',
         showLastUpdateTime: true,
-        sidebarCollapsed: false,
+        sidebarCollapsed: true,
         breadcrumbs: false,
+        remarkPlugins: [math],
+        rehypePlugins: [katex],
+        admonitions: {
+          keywords: ['yearn', 'yearnData'],
+          extendDefaults: true,
+        },
       },
     ],
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'security',
-        path: 'docs/security',
-        routeBasePath: 'security',
-        sidebarPath: require.resolve('./sidebars/sidebarsSecurity.js'),
+        id: 'partners',
+        path: 'docs/partners',
+        routeBasePath: 'partners',
+        sidebarPath: './sidebars/sidebarsPartners.js',
         showLastUpdateTime: true,
+        sidebarCollapsed: true,
         breadcrumbs: false,
+        remarkPlugins: [math],
+        rehypePlugins: [katex],
+        admonitions: {
+          keywords: ['yearn', 'yearnData'],
+          extendDefaults: true,
+        },
       },
     ],
   ],

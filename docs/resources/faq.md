@@ -32,7 +32,7 @@
 
 #### When do I realize profits from a vault?
 
-- Your profits [are compounded](https://docs.yearn.fi/getting-started/using-yearn#tools-to-track-your-funds) into the vault token overtime, which can be withdrawn for your principal plus profit.
+- Your profits [are compounded](https://docs.yearn.fi/getting-started/using-yearn#tools-to-track-your-funds) into the vault token over time, which can be withdrawn for your principal plus profit.
 
 #### How is vault growth calculated?
 
@@ -84,7 +84,7 @@
 
 #### Who is on the multisig?
 
-- [Multisig Documentation](https://docs.yearn.fi/security/multisig)
+- [Multisig Documentation](/developers/security/multisig)
 
 #### What is a YIP?
 
@@ -121,7 +121,7 @@
 
 #### I'm getting an error that says "ALERT: Transaction Error. Exception thrown in contract code." What does that mean?
 
-- There may be a bug in the contract that you are interacting with. bring this up with the team of [Discord](https://discord.gg/yearn).
+- There may be a bug in the contract that you are interacting with. bring this up with the team on [Discord](https://discord.gg/yearn).
 
 #### I paid gas for a deposit, but it didn't go through, why is that?
 
@@ -166,7 +166,7 @@
 
 - [Yearn Press Kit](https://presskit.yearn.fi/)
 
-#### Use Yearn Data 
+#### Use Yearn Data
 
 - [Yearn Vision and Watch Guide](https://medium.com/iearn/diving-into-yearn-metrics-8c3fb0520927)
 - [Yearn Subgraph Guide](https://medium.com/iearn/subgraphs-explained-yearning-for-data-4e90d18e33e)

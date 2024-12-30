@@ -1,28 +1,26 @@
-# Introduction
+# Yearn Products
 
-Yearn Finance is DeFi’s premier yield aggregator. Giving individuals, DAOs and other protocols a way to deposit digital assets and receive yield.
+![image](/img/product-pages/blueknight-product-banner.png)
 
-The protocol is maintained by various independent developers and is governed by YFI holders. You can find brief descriptions of Yearn's core products, the governance process, and links to active communication channels below.
+## yVaults
 
-- https://yearn.fi/
+Yearn Vaults (aka yVaults) are capital pools that automatically generate yield based on opportunities present in the market. Vaults benefit users by socializing gas costs, automating the yield generation and rebalancing process, and automatically shifting capital as opportunities arise. End users do not need to have extensive knowledge of the underlying DeFi protocols and can use the vaults as passive-investing strategies.
 
-## Vaults
+<PrettyLink>[Don't know what that means? Check out the yVault Docs](products/yvaults/overview.md)</PrettyLink>
+<PrettyLink>[Yearn Vaults V3 dApp](https://yearn.fi/v3)</PrettyLink>
+<PrettyLink>[Yearn Vaults V2 dApp](https://yearn.fi/vaults)</PrettyLink>
 
-Yearn Vaults are capital pools that automatically generate yield based on opportunities present in the market. Vaults benefit users by socializing gas costs, automating the yield generation and rebalancing process, and automatically shifting capital as opportunities arise. End users also do not need to have proficient knowledge of the underlying protocols involved or DeFi, thus the Vaults represent a passive-investing strategy.
+## yLockers
 
-- Yearn Vaults V3: https://yearn.fi/v3
-- Yearn Vaults V2: https://yearn.fi/vaults
+yLockers are yVault products built to get the most out of DeFi protocol governance tokens based on Curve's Vote Escrow mechanics. Lock your tokens and get extra yield, but beware; They are in there to stay and can only be traded on decentralized exchanges.
 
-## Governance
+<PrettyLink>[Don't know what that means? Check out the yLockers Docs](products/ylockers/overview.md)</PrettyLink>
+<PrettyLink>[Yearn yCRV dApp](https://ycrv.yearn.fi/)</PrettyLink>
+<PrettyLink>[Yearn yPRISMA dApp](https://yprisma.yearn.fi/)</PrettyLink>
 
-The Yearn ecosystem is controlled by YFI token holders who submit and vote on off-chain proposals that govern the ecosystem. Proposals that generate majority support \(&gt;50% of the vote\) are implemented by a 9-member multi-signature wallet. Changes must be signed by 6 out of the 9 wallet signers to be implemented. The members of the multi-signature wallet were voted in by YFI holders and are subject to change from future governance votes. Please refer to the [multisig documentation](https://docs.yearn.fi/security/multisig) for the list of multisig signers. For more info about the governance process, please consult the [Governance FAQ](https://docs.yearn.fi/resources/faq#governance) and [YIP-61: Governance 2.0](https://gov.yearn.fi/t/yip-61-governance-2-0/10460).
+## yPools
 
-## Communication Channels
+yPools are user-governed liquidity pools of different crypto-assets. They are risk adjusted baskets of community chosen derivatives of the base asset that earn yield from those underlying derivatives. The first yPool is yETH, which is a collection of different liquid staked version of ETH.
 
-Governance Forum [https://gov.yearn.fi/](https://gov.yearn.fi/)
-
-Discord [https://discord.gg/yearn](https://discord.gg/yearn)
-
-Telegram [https://t.me/yearnfinance](https://t.me/yearnfinance)
-
-Reddit [https://www.reddit.com/r/yearn_finance/](https://www.reddit.com/r/yearn_finance/)
+<PrettyLink>[Don't know what that means? Check out the yETH Docs](products/ypools/yeth/overview.md)</PrettyLink>
+<PrettyLink>[Yearn yETH dApp](https://yearn.fi/yeth)</PrettyLink>
